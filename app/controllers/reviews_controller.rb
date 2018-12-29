@@ -6,10 +6,27 @@ def index
 #variable is something that always changes. we want it to equal to some random number. The "@" indicates the variable
 #we want to pull this variable into our HTML
 
+  @price = params[:price]
+  @cuisine = params[:cuisine]
+  #find parameters from URL
+
+#start with all the Reviews
 @reviews= Review.all
-#in our model, we want to find all of them as people submit them
+
+#filtering by price
+if @price.present?
+  @reviews= @reviews.where(price: @price)
+  #replace all the reviews with reviews where the COLUMN price is the parameter of the URL price
+end
+
+#filter by Cuisine
+if @cuisine.present?
+  @reviews= @reviews.where(cuisine: @cuisine)
+end
+
 
 end
+
 
 
 
@@ -93,9 +110,8 @@ end
 def form_params
   #we can use this within rails and any part of this ReviewsController
   #like a variable/ const in Javascript or a shortcut
-  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance))
+  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price))
 end
-
 
 
 end
