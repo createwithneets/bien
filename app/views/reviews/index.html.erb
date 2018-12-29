@@ -2,16 +2,16 @@
 
 <nav class="filters">
 <div>
-  <%= link_to "  All Restaurants  ", root_path %>
-  <%= link_to "  $  ", root_path(price: 1, cuisine: @cuisine, location: @location)%>
-  <%= link_to "  $$  ", root_path(price: 2, cuisine: @cuisine, location: @location)%>
-    <%= link_to "  $$$  ", root_path(price: 3, cuisine: @cuisine, location: @location)%>
-      <%= link_to "  $$$$  ", root_path(price: 4, cuisine: @cuisine, location: @location)%>
+  <%= active_link_to "  All Restaurants  ", root_path, active: {price: nil, cuisine: nil, location:nil } %>
+  <%= active_link_to "  $  ", root_path(price: 1, cuisine: @cuisine, location: @location), active: { price: 1 }%>
+  <%= active_link_to "  $$  ", root_path(price: 2, cuisine: @cuisine, location: @location), active: { price: 2 }%>
+    <%= active_link_to "  $$$  ", root_path(price: 3, cuisine: @cuisine, location: @location), active: { price: 3 }%>
+      <%= active_link_to "  $$$$  ", root_path(price: 4, cuisine: @cuisine, location: @location), active: { price: 4 }%>
 </div>
 <div>
 
-      <%= link_to "  Japanese  ", root_path(cuisine: "Japanese", price: @price, location: @location) %>
-            <%= link_to "  Italian  ", root_path(cuisine: "Italian",  price: @price, location: @location) %>
+      <%= active_link_to "  Japanese  ", root_path(cuisine: "Japanese", price: @price, location: @location), active: { cuisine: "Japanese" } %>
+            <%= active_link_to "  Italian  ", root_path(cuisine: "Italian",  price: @price, location: @location), active: { cuisine: "Italian" } %>
 
 </div>
 
@@ -26,11 +26,16 @@
   </nav>
 
 
+
+
+
 <% @reviews. each do |review| %>
 
   <div class="review">
-    <%= link_to review.title, review_path(review) %>
+    <%= link_to review_path(review) do %>
+    <h2> <%= review.title %> </h2>
+    <p> <%= review.cuisine %> -
+    <%= pluralize review.comments.count, "comment" %> </p>
+    <% end %>
   </div>
-
-
-<% end %>
+  <% end %>

@@ -35,6 +35,11 @@ gem 'jbuilder', '~> 2.5'
 gem "geocoder"
 
 
+#make our forms nice and Easy
+gem "simple_form"
+
+#make our filters active
+gem "active_link_to"
 
 
 # Use Capistrano for deployment
