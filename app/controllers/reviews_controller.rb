@@ -27,17 +27,23 @@ end
 
 
 def create
-  #this will take the info from the form and add it to the database
+  #this will take the info from the form and add it to the model
   @review = Review.new(form_params)
-  #here we require that there is a review, that all three sections are fulfilled
-  #the ":" just shows that it's NOT a variable. something that stays the same.
 
-  #want to save this new review to the database
-  #to take the variable that is the review:
-  @review.save
+#we want to check if the model can be saved
+#if it is, we're going to the home page again
+#if it isn't, show the new form
 
-  #redirect back to home page
+if @review.save
   redirect_to root_path
+else
+  #show the view for new.html.erb
+  render "new"
+
+end
+
+
+
 end
 
 
@@ -72,9 +78,14 @@ def update
   @review = Review.find(params[:id])
 #update with the new info from the form
 
-@review.update(form_params)
+  if @review.update(form_params)
 #redirect somewhere new
-redirect_to review_path(@review)
+  redirect_to review_path(@review)
+else
+
+  render "edit"
+
+  end
 
 end
 
