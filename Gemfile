@@ -30,6 +30,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+
+#add in our geocoding because we want to know where the restaurants actaully anywhere
+gem "geocoder"
+
+
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

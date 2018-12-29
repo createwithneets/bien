@@ -8,6 +8,7 @@ def index
 
   @price = params[:price]
   @cuisine = params[:cuisine]
+  @location = params[:location]
   #find parameters from URL
 
 #start with all the Reviews
@@ -22,6 +23,11 @@ end
 #filter by Cuisine
 if @cuisine.present?
   @reviews= @reviews.where(cuisine: @cuisine)
+end
+
+#filtering by location
+if @location.present?
+  @reviews= @reviews.near(@location)
 end
 
 
@@ -110,7 +116,7 @@ end
 def form_params
   #we can use this within rails and any part of this ReviewsController
   #like a variable/ const in Javascript or a shortcut
-  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price))
+  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price, :address))
 end
 
 

@@ -1,15 +1,28 @@
 <% content_for :page_title, "Homepage" %>
 
 <nav class="filters">
-  <%= link_to "All prices", root_path %>
-  <%= link_to "$", root_path(price: 1, cuisine: @cuisine)%>
-  <%= link_to "$$", root_path(price: 2, cuisine: @cuisine)%>
-    <%= link_to "$$$", root_path(price: 3, cuisine: @cuisine)%>
-      <%= link_to "$$$$", root_path(price: 4, cuisine: @cuisine)%>
+<div>
+  <%= link_to "  All Restaurants  ", root_path %>
+  <%= link_to "  $  ", root_path(price: 1, cuisine: @cuisine, location: @location)%>
+  <%= link_to "  $$  ", root_path(price: 2, cuisine: @cuisine, location: @location)%>
+    <%= link_to "  $$$  ", root_path(price: 3, cuisine: @cuisine, location: @location)%>
+      <%= link_to "  $$$$  ", root_path(price: 4, cuisine: @cuisine, location: @location)%>
+</div>
+<div>
 
+      <%= link_to "  Japanese  ", root_path(cuisine: "Japanese", price: @price, location: @location) %>
+            <%= link_to "  Italian  ", root_path(cuisine: "Italian",  price: @price, location: @location) %>
 
-      <%= link_to "Japanese", root_path(cuisine: "Japanese", price: @price) %>
-            <%= link_to "Italian", root_path(cuisine: "Italian",  price: @price) %>
+</div>
+
+<form action="/">
+  <input field="text" name="location"
+  placeholder="Search Location..." value= "<%= @location %>">
+
+  <input type="hidden" name="price" value="<%= @price %>">
+    <input type="hidden" name="cuisine" value="<%= @cuisine %>">
+  </form>
+
   </nav>
 
 

@@ -1,5 +1,8 @@
 class Review < ApplicationRecord
 
+geocoded_by :address
+after_validation :geocode
+#everytime we save the review, the address wil be geocoded and put in to a certain place
 
 validates :title, presence: true
 #validating title, to make sure its there
@@ -10,7 +13,7 @@ validates :body, length: { minimum: 10 }
 validates :score, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10}
 
 validates :restaurant, presence: true
-
+validates :address, presence: true
 
 def to_param
   id.to_s + "-" + title.parameterize
