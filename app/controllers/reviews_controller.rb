@@ -93,7 +93,7 @@ end
 def form_params
   #we can use this within rails and any part of this ReviewsController
   #like a variable/ const in Javascript or a shortcut
-  (params.require(:review).permit(:title, :body, :score))
+  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance))
 end
 
 

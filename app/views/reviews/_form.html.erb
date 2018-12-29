@@ -11,8 +11,18 @@
 
 <% end %>
 
+
+
 <p><%= f.label:title %>
 <%= f.text_field:title %></p>
+
+<p>
+  <%= f.label:restaurant %>
+  <%= f.text_field:restaurant%> </p>
+
+  <p>
+    <%= f.label:ambiance %>
+    <%= f.text_field:ambiance%> </p>
 
 <p>
   <%= f.label:body %>
@@ -21,6 +31,8 @@
   <p>
     <%= f.label:score %>
     <%= f.number_field:score%> </p>
+
+
 
     <%= f.submit "Save review" %>
 
