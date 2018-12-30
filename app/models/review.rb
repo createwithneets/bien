@@ -1,7 +1,11 @@
 class Review < ApplicationRecord
 
 #add an association that has a 1-to-many relationship (one review, many comments)
-has_many :comments 
+has_many :comments
+has_many :bookmarks
+
+#add an association to the user
+belongs_to :user
 
 
 geocoded_by :address

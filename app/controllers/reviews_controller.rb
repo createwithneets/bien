@@ -1,5 +1,9 @@
 class ReviewsController < ApplicationController
 
+
+  #check if logged in
+  before_action :check_login, except: [:index, :show]
+
 def index
   # this is our list page for our reviews
 
@@ -53,6 +57,10 @@ def create
   #this will take the info from the form and add it to the model
   @review = Review.new(form_params)
 
+
+  #and then associate it wiht a user
+  @review.user = @current_user
+
 #we want to check if the model can be saved
 #if it is, we're going to the home page again
 #if it isn't, show the new form
@@ -81,7 +89,10 @@ end
 def destroy
   #find the indivial review
   @review = Review.find(params[:id])
-  #then we want to destroy it
+
+
+  #then we want to destroy it (if they CAN destroy it or have access)
+  if @review.user == @current_user
   @review.destroy
     #redirect to homepage
   redirect_to root_path
@@ -92,6 +103,11 @@ end
 def edit
   #find the individual review and put it into the form
   @review = Review.find(params[:id])
+
+#if not the review user, even if access via URL will be redirected to homepage
+  if @review.user != @current_user
+    redirect_to root_path
+  end
 end
 
 
@@ -101,14 +117,20 @@ def update
   @review = Review.find(params[:id])
 #update with the new info from the form
 
-  if @review.update(form_params)
-#redirect somewhere new
-  redirect_to review_path(@review)
+
+if @review.user != @current_user
+  redirect_to root_path
 else
 
-  render "edit"
+    if @review.update(form_params)
+  #redirect somewhere new
+    redirect_to review_path(@review)
+  else
 
-  end
+    render "edit"
+
+    end
+end
 
 end
 
@@ -119,5 +141,5 @@ def form_params
   (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price, :address))
 end
 
-
+end 
 end

@@ -2,8 +2,41 @@
 
 <h1><%= @review.title %></h1>
 <h2><%= simple_format @review.restaurant %></h2>
+
+<% if is_logged_in? %>
+<p>
+
+<% if @review.bookmarks.where(user: @current_user).any? %>
+<%= link_to "Unfavourite 💔", review_bookmark_path(@review), method: :delete %>
+<% else %>
+  <%= link_to "Favourite 🖤 ", review_bookmark_path(@review), method: :post %>
+<% end %>
+</p>
+<% end %>
+
+
+<h3>Bookmarked by...</h3>
+<ul>
+  <% @review.bookmarks.each do |bookmark| %>
+  <li> <%= bookmark.user.username %></li>
+  <% end %>
+  </ul>
+
+
+
 <div class="score">
 <%= @review.score %>/ 10 </div>
+
+
+<div class="user">
+  Posted by
+  <% if @review.user.present? %>
+  <%= link_to @review.user.username, user_path(@review.user)  %>
+  <% else %>
+  Anonymous
+  <% end %>
+  </div>
+
 
 <div class="ambiance"> <% if @review.ambiance.present? %>Ambiance:<%= simple_format @review.ambiance %> </div>
 <% end %>
@@ -16,17 +49,27 @@
     <%= simple_format @review.body %></div>
 
 
+
+<% if @review.user == @current_user %>
     <div class="actions">
       <%= link_to "Edit this Review", edit_review_path(@review)%>
       <%= link_to "Delete this Review", review_path(@review), method: :delete, data: { confirm: "Are you sure?" }%>
       </div>
+<% end %>
 
 
 <h3> Comments </h3>
 <% @review.comments.order("created_at desc").each do |comment| %>
 <div class="comment">
   <%= simple_format comment.body %>
-  <p class= "posted"> Posted <%= time_ago_in_words comment.created_at %> ago </p>
+  <p class= "posted"> Posted <%= time_ago_in_words comment.created_at %> ago
+    by
+    <% if comment.user.present? %>
+     <%= link_to comment.user.username, user_path(comment.user) %>
+   <% else %>
+ anonymous
+<% end %>
+</p>
   </div>
 <% end %>
 

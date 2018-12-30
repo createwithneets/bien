@@ -19,7 +19,14 @@
   <H2>The best restaurants in the world</h2>
 
 <nav>
+<% if is_logged_in? %>
+<%= @current_user.username %>
   <%= link_to "Add a review", new_review_path %>
+  <%= link_to "Log out", session_path, method: :delete %>
+  <% else %>
+  <%= link_to "Sign up", new_user_path %>
+  <%= link_to "Log in", new_session_path %>
+  <% end %>
   </nav>
     </header>
 
