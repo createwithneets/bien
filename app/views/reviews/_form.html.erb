@@ -2,12 +2,12 @@
 
 <%= f.input :title %>
 <%= f.input :restaurant%>
-<%= f.input :address%>
-<%= f.input :ambiance %>
-<%= f.input :cuisine %>
-<%= f.input :price%>
+<%= f.input :address %>
+<%= f.input :ambiance, collection: ["Casual", "Date Night", "Fast Food", "Family-Friendly", "Fancy"] %>
+<%= f.input :cuisine, collection: ["Japanese", "Mexican", "American"] %>
+<%= f.input :price, as: :radio_buttons, collection: [1, 2, 3, 4]%>
 <%= f.input :body %>
-<%= f.input :score %>
+<%= f.input :score, collection: 1..10 %>
 
 
 <%= f.button :submit%>
