@@ -12,6 +12,10 @@ geocoded_by :address
 after_validation :geocode
 #everytime we save the review, the address wil be geocoded and put in to a certain place
 
+#add the photo uploader
+mount_uploader :photo, PhotoUploader
+
+
 validates :title, presence: true
 #validating title, to make sure its there
 

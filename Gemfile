@@ -56,6 +56,13 @@ gem "active_link_to"
 #profanity filters
 gem "profanity_filter"
 
+#add uploadable photos
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+
+#to use amazon s3
+gem "fog-aws"
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

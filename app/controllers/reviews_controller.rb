@@ -108,6 +108,9 @@ def edit
 #if not the review user, even if access via URL will be redirected to homepage
   if @review.user != @current_user
     redirect_to root_path
+  elsif @review.created_at < 1.hour.ago
+    redirect_to review_path(@review)
+    #elsif
   end
 end
 
@@ -139,6 +142,6 @@ end
 def form_params
   #we can use this within rails and any part of this ReviewsController
   #like a variable/ const in Javascript or a shortcut
-  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price, :address))
+  (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price, :address, :photo))
 end
 end
