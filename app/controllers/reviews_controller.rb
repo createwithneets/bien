@@ -97,6 +97,7 @@ def destroy
     #redirect to homepage
   redirect_to root_path
 end
+end
 
 
 
@@ -140,6 +141,4 @@ def form_params
   #like a variable/ const in Javascript or a shortcut
   (params.require(:review).permit(:title, :body, :score, :restaurant, :ambiance, :cuisine, :price, :address))
 end
-
-end 
 end
