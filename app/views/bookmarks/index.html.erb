@@ -2,6 +2,6 @@
 
 <%= @current_user.bookmarks.each do |bookmark|  %>
 <div class="bookmark">
-<p><%= link_to "bookmark.review.title", review_path(param[:bookmark_id]) %></p>
+<p><%= link_to "bookmark.review.title", review_bookmark_path(@bookmark) %></p>
   <% end %>
   </div>

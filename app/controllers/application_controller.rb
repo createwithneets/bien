@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   #add in the method to use in the views
   helper_method :is_logged_in?
 
-  
+
   def find_current_user
 
 if is_logged_in?
@@ -34,5 +34,29 @@ def is_logged_in?
 session[:user_id].present?
 
 end
+
+
+#check admin login
+def check_admin
+  @current_user = find_current_user
+
+  unless @current_user.present? and @current_user.is_admin?
+    redirect_to root_path
+  end
+
+end
+
+
+#find the admin user
+def find_admin_user
+@current_user= find_current_user
+if @current_user.present? and @current_user.is_admin?
+  @current_user
+else
+  nil
+end
+
+end
+
 
 end
