@@ -1,1 +1,7 @@
 <h2>All of your bookmarks</h2>
+
+<%= @current_user.bookmarks.each do |bookmark|  %>
+<div class="bookmark">
+<p><%= link_to "bookmark.review.title", review_path(Review.find(params[:review_id])) %></p>
+  <% end %>
+  </div>

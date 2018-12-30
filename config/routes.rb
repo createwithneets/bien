@@ -7,11 +7,13 @@ resources :reviews do
 resources :comments
 
 
-resource :bookmark 
+resource :bookmark
 
 end
 
 resources :users
+
+resources :bookmarks 
 
 resource :session
 

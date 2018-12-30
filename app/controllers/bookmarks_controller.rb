@@ -4,7 +4,7 @@ before_action :check_login
 
 
 def index
-@bookmarks= Bookmark.all
+@bookmarks= @current_user.bookmarks.all
 
 end
 
@@ -34,5 +34,6 @@ def destroy
 redirect_to review_path(@review)
 
 end
+
 
 end

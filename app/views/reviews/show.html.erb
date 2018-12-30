@@ -73,8 +73,11 @@
   </div>
 <% end %>
 
+
+<% if is_logged_in? %>
   <h3>Add a comment</h3>
 <%= simple_form_for [@review, Comment.new] do |f| %>
 <%= f.input :body %>
 <%= f.button :submit %>
+<% end %>
 <% end %>
