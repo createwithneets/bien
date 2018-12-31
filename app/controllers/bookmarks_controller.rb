@@ -4,9 +4,9 @@ before_action :check_login
 
 
 def index
-@bookmarks= @current_user.bookmarks.all
-
+  @bookmarks= @current_user.bookmarks.all
 end
+
 
 def create
 
@@ -22,6 +22,8 @@ def create
 
   redirect_to review_path(@review)
 end
+
+
 
 
 
