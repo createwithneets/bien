@@ -24,10 +24,11 @@
 <% end %>
   <%= link_to "List of Reviews", reviews_path %> |
   <% if is_logged_in? %>
-<% if @current_user.is_admin? %> 
+<% if @current_user.is_admin? %>
 <%= link_to "Admin Panel", admin_root_path %> |
 <% end %>
   <%= link_to "Add a review", new_review_path %> |
+  <%= link_to "Edit Account", edit_account_path %> |
   <%= link_to "Log out", session_path, method: :delete %>
   <% else %>
   <%= link_to "Sign up", new_user_path %> |
@@ -35,6 +36,13 @@
   <% end %>
   </nav>
     </header>
+
+<%if flash[:success].present? %>
+<div class="success">
+  <%= flash[:success] %>
+  </div>
+  <% end %>
+
 
 <main>
     <%= yield %>

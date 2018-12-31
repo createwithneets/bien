@@ -18,6 +18,8 @@ resources :bookmarks
 
 resource :session
 
+resource :account 
+
 get "about", to: "pages#about"
 
 root "pages#home"

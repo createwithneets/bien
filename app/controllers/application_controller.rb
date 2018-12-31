@@ -9,14 +9,17 @@ class ApplicationController < ActionController::Base
   helper_method :is_logged_in?
 
 
-  def find_current_user
 
+
+  def find_current_user
 if is_logged_in?
     @current_user= User.find(session[:user_id])
   else
     @current_user= nil
   end
 end
+
+
 
 
 #check login status

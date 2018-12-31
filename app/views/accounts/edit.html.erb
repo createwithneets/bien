@@ -1,0 +1,7 @@
+<h2>Edit Account</h2>
+
+<%= simple_form_for @current_user, url: account_path do |f| %>
+<%= f.input :username %>
+<%= f.input :email %>
+<%= f.button :submit, "Update Account" %>
+<% end %>
