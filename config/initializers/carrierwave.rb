@@ -2,9 +2,9 @@ CarrierWave.configure do |config|
   config.fog_provider = 'fog/aws'                        # required
   config.fog_credentials = {
     provider:              'AWS',                        # required
-    aws_access_key_id:     'AKIAJXFFTNMT76S3DO5Q',                        # required unless using use_iam_profile
-    aws_secret_access_key: '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',                        # required unless using use_iam_profile
+    aws_access_key_id:     Rails.application.credentials[Rails.env.to_sym][:aws_key],
+    aws_secret_access_key: Rails.application.credentials[Rails.env.to_sym][:aws_secret],
+    region: "us-west-2"
   }
-  config.fog_directory  = 'bien-test-reviews'                                      # required
-
+  config.fog_directory  = Rails.application.credentials[Rails.env.to_sym][:aws_bucket]
 end

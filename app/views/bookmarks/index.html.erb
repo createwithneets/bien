@@ -1,7 +1,7 @@
 <h2>All of your bookmarks</h2>
 
-<%= @current_user.bookmarks.each do |bookmark|  %>
+<% @current_user.bookmarks.each do |bookmark|  %>
 <div class="bookmark">
 <p><%= link_to bookmark.review.title, review_path(bookmark.review, bookmark) %></p>
-  <% end %>
   </div>
+  <% end %>
